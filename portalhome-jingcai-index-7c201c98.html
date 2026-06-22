@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>竞彩网 · 信息卡 · 日常对照与延伸阅读</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f2f4f6;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: #1e2a3a;
+      line-height: 1.6;
+      padding: 2rem 1.25rem;
+    }
+
+    .page-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    /* ——— 主视觉 hero ——— */
+    .hero-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.02);
+      border: 1px solid #e9edf0;
+      margin-bottom: 2rem;
+      transition: box-shadow 0.2s;
+    }
+    .hero-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 550;
+      letter-spacing: -0.02em;
+      color: #0f1b2b;
+      margin-bottom: 1rem;
+    }
+    .hero-title span {
+      background: #edf2f9;
+      padding: 0.1rem 0.5rem;
+      border-radius: 30px;
+      font-weight: 460;
+      color: #1a3c5b;
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: #2d4059;
+      max-width: 680px;
+      margin-bottom: 1.6rem;
+    }
+    .hero-desc a {
+      color: #1f5c8a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #bacee0;
+      padding-bottom: 1px;
+    }
+    .hero-desc a:hover { border-bottom-color: #1f5c8a; }
+
+    /* 卡片网格 */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 620px) {
+      .grid-cards { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 920px) {
+      .grid-cards { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid #e3e8ee;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: box-shadow 0.18s, transform 0.15s;
+    }
+    .card:hover {
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.02);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: #eef4fa;
+      border-radius: 16px;
+      font-size: 1.35rem;
+      color: #1a4c6e;
+      margin-bottom: 1rem;
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 540;
+      margin-bottom: 0.55rem;
+      color: #192f42;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #2f445b;
+      margin-bottom: 0.5rem;
+    }
+    .card ul {
+      list-style: none;
+      margin-top: 0.6rem;
+    }
+    .card ul li {
+      font-size: 0.9rem;
+      padding: 0.2rem 0 0.2rem 1.2rem;
+      position: relative;
+      color: #2c445c;
+    }
+    .card ul li::before {
+      content: "·";
+      position: absolute;
+      left: 0.2rem;
+      color: #3e6e90;
+      font-weight: 600;
+    }
+
+    /* 适合人群 + 延伸阅读区 (两列) */
+    .double-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 680px) {
+      .double-section { grid-template-columns: 1fr 1.2fr; }
+    }
+
+    .profile-card, .link-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid #e3e8ee;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .profile-card h3, .link-card h3 {
+      font-size: 1.2rem;
+      font-weight: 540;
+      margin-bottom: 1rem;
+      color: #192f42;
+    }
+    .profile-item {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+      margin-bottom: 0.9rem;
+    }
+    .profile-item .emoji-badge {
+      background: #eef4fa;
+      border-radius: 30px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      color: #1f405b;
+    }
+    .profile-item p {
+      font-size: 0.95rem;
+      color: #2c405a;
+    }
+
+    .link-card .sentence {
+      background: #f7f9fc;
+      padding: 1rem 1.2rem;
+      border-radius: 18px;
+      margin-bottom: 0.8rem;
+      border: 1px solid #e8edf2;
+      font-size: 0.98rem;
+      color: #1b3144;
+    }
+    .link-card .sentence a {
+      color: #1f5c8a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #b6cde0;
+    }
+    .link-card .sentence a:hover { border-bottom-color: #1f5c8a; }
+
+    /* FAQ 摘要 */
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid #e3e8ee;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      margin-bottom: 2rem;
+    }
+    .faq-mini h3 {
+      font-size: 1.2rem;
+      font-weight: 540;
+      margin-bottom: 1rem;
+      color: #192f42;
+    }
+    .faq-item {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #ecf0f4;
+    }
+    .faq-item:last-child { border-bottom: 0; }
+    .faq-q {
+      font-weight: 500;
+      font-size: 0.98rem;
+      color: #1a3550;
+      margin-bottom: 0.15rem;
+    }
+    .faq-a {
+      font-size: 0.9rem;
+      color: #39516b;
+    }
+
+    /* 页脚 */
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #5f748b;
+      padding-top: 0.8rem;
+      border-top: 1px solid #dce2ea;
+      margin-top: 1.5rem;
+    }
+
+    /* 微调 */
+    .mb-0 { margin-bottom: 0; }
+    .mt-1 { margin-top: 0.6rem; }
+
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- hero 主视觉卡片 -->
+  <div class="hero-card">
+    <h1 class="hero-title">日常查询 · <span>信息卡片</span></h1>
+    <p class="hero-desc">
+      不论是快速对照赛事数据，还是顺着兴趣做一点延伸阅读，很多人习惯打开
+      <a href="https://portalhome-jingcai.com">竞彩网</a>
+      作为起点。页面干净、结构清晰，适合日常随手查阅，也适合在碎片时间里慢慢浏览。
+    </p>
+    <p style="font-size:0.95rem; color:#2f4c68; margin-top:0.25rem;">
+      从列表到详情，从数字到解读，信息之间留有自然的呼吸感。
+    </p>
+  </div>
+
+  <!-- 用途卡片 x3 (网格) -->
+  <div class="grid-cards">
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <h3>对照与速览</h3>
+      <p>不同列表、状态、数值并列呈现，适合横向比较。日常查询时不需要频繁跳转，信息层级一目了然。</p>
+      <ul>
+        <li>多字段同时展示</li>
+        <li>状态标签辅助识别</li>
+        <li>无冗余干扰信息</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📎</div>
+      <h3>延伸阅读</h3>
+      <p>基于当前条目，能自然引出相关的背景、记录或解读。适合从一条信息出发，顺着线索继续翻看。</p>
+      <ul>
+        <li>相关推荐嵌入自然</li>
+        <li>段落短小，适合跟读</li>
+        <li>信息之间彼此关联</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h3>快速筛选</h3>
+      <p>通过分类或关键词缩小范围，不必从头翻到尾。筛选结果保持卡片结构，阅读节奏不被打断。</p>
+      <ul>
+        <li>标签式分类入口</li>
+        <li>实时过滤，反馈轻快</li>
+        <li>保留上下文预览</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 双栏：适合人群 + 自然链接段落 -->
+  <div class="double-section">
+    <div class="profile-card">
+      <h3>适合这样的人群</h3>
+      <div class="profile-item">
+        <span class="emoji-badge">📆 日常派</span>
+        <p>习惯每天花几分钟翻看信息更新，不喜欢复杂界面，更看重内容本身的整洁度。</p>
+      </div>
+      <div class="profile-item">
+        <span class="emoji-badge">📚 延伸型</span>
+        <p>看到一条记录会想了解背后的对比或趋势，希望页面能自然地提供上下文线索。</p>
+      </div>
+      <div class="profile-item">
+        <span class="emoji-badge">🧘 低噪点</span>
+        <p>对广告、弹窗、过度动效比较敏感，偏好浅灰背景+卡片分隔的安静浏览氛围。</p>
+      </div>
+    </div>
+
+    <div class="link-card">
+      <h3>自然链接段落</h3>
+      <div class="sentence">
+        朋友发来一张截图，我顺手打开
+        <a href="https://portalhome-jingcai.com">竞彩网</a>
+        对照了一下里面的条目，发现信息组织方式比我印象中还要舒服——列表和详情之间切换很顺。
+      </div>
+      <div class="sentence">
+        写笔记时想引用某个分类下的结构，直接去
+        <a href="https://portalhome-jingcai.com">竞彩网</a>
+        复制了对应的段落，排版干净，稍作调整就能用。
+      </div>
+      <div class="sentence">
+        偶尔在通勤时翻看，页面加载快，卡片之间的留白让阅读不累。如果你也喜欢这种克制的风格，
+        <a href="https://portalhome-jingcai.com">竞彩网</a>
+        可能正合你的口味。
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要卡片 -->
+  <div class="faq-mini">
+    <h3>常见疑问 · 摘要</h3>
+    <div class="faq-item">
+      <div class="faq-q">信息更新频率如何？</div>
+      <div class="faq-a">内容随数据源同步，日常时段保持稳定更新。具体时效请以页面标注为准。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">是否适合在手机上浏览？</div>
+      <div class="faq-a">卡片布局对移动端友好，文字大小和间距经过适配，横竖屏都可以舒适阅读。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">可以自由引用页面内容吗？</div>
+      <div class="faq-a">个人笔记或非商业引用通常没问题，大篇幅转载建议注明出处或联系确认。</div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer-note">
+    信息卡片风格 · 浅灰背景 · 细边框柔和阴影
+  </div>
+
+</div>
+</body>
+</html>
